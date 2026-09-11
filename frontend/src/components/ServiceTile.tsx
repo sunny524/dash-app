@@ -5,7 +5,7 @@ import { makeStyles, spacing, radius } from "@/src/theme";
 const useStyles = makeStyles((c) => ({
   tile: {
     flex: 1,
-    aspectRatio: 1,
+    aspectRatio: 1.15,
     backgroundColor: c.brandTertiary,
     borderRadius: radius.lg,
     padding: spacing.md,
@@ -14,11 +14,11 @@ const useStyles = makeStyles((c) => ({
     borderColor: c.border,
   },
   iconWrap: {
-    width: 44, height: 44, borderRadius: 12,
+    width: 40, height: 40, borderRadius: 12,
     backgroundColor: c.surface,
     alignItems: "center", justifyContent: "center",
   },
-  label: { fontSize: 15, fontWeight: "700", color: c.onSurface },
+  label: { fontSize: 14, fontWeight: "800", color: c.onSurface },
   subtitle: { fontSize: 11, color: c.muted, marginTop: 2 },
   badge: {
     position: "absolute",

@@ -1,13 +1,13 @@
-import { View, Text, ScrollView, Pressable, TextInput } from "react-native";
+import { View, Text, Pressable, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { useState } from "react";
 
 import { useTheme, spacing, radius } from "@/src/theme";
 import { menuItems } from "@/src/data/mock";
-import { StickyCTA } from "@/src/components/Buttons";
 
 const spice = [
   { id: "mild", label: "Mild (No spice)", price: 0 },
@@ -36,7 +36,11 @@ export default function ItemDetail() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.surface }}>
-      <ScrollView contentContainerStyle={{ paddingBottom: 140 + insets.bottom }}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{ paddingBottom: 140 + insets.bottom }}
+        bottomOffset={100}
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={{ height: 280 }}>
           <Image source={{ uri: m.image }} style={{ width: "100%", height: "100%" }} contentFit="cover" />
           <Pressable testID="item-close" onPress={() => router.back()} style={{
@@ -84,38 +88,45 @@ export default function ItemDetail() {
             />
           </Section>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
-      <StickyCTA>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: spacing.md }}>
-          <View style={{
-            flexDirection: "row", alignItems: "center",
-            backgroundColor: colors.surfaceSecondary, borderRadius: radius.pill,
-            paddingHorizontal: 6, height: 48,
-          }}>
-            <Pressable testID="qty-minus" onPress={() => setQty(Math.max(1, qty - 1))} style={qtyBtn(colors.surface)}>
-              <Ionicons name="remove" size={18} color={colors.onSurface} />
-            </Pressable>
-            <Text style={{ minWidth: 24, textAlign: "center", fontSize: 16, fontWeight: "800", color: colors.onSurface }}>{qty}</Text>
-            <Pressable testID="qty-plus" onPress={() => setQty(qty + 1)} style={qtyBtn(colors.brandPrimary)}>
-              <Ionicons name="add" size={18} color="#FFFFFF" />
+      <KeyboardStickyView offset={{ closed: 0, opened: -insets.bottom + 8 }}>
+        <View style={{
+          paddingHorizontal: spacing.lg, paddingTop: spacing.md,
+          paddingBottom: insets.bottom + spacing.md,
+          backgroundColor: colors.surface,
+          borderTopWidth: 1, borderTopColor: colors.border,
+        }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: spacing.md }}>
+            <View style={{
+              flexDirection: "row", alignItems: "center",
+              backgroundColor: colors.surfaceSecondary, borderRadius: radius.pill,
+              paddingHorizontal: 6, height: 46,
+            }}>
+              <Pressable testID="qty-minus" onPress={() => setQty(Math.max(1, qty - 1))} style={qtyBtn(colors.surface)}>
+                <Ionicons name="remove" size={18} color={colors.onSurface} />
+              </Pressable>
+              <Text style={{ minWidth: 22, textAlign: "center", fontSize: 15, fontWeight: "800", color: colors.onSurface }}>{qty}</Text>
+              <Pressable testID="qty-plus" onPress={() => setQty(qty + 1)} style={qtyBtn(colors.brandPrimary)}>
+                <Ionicons name="add" size={18} color="#FFFFFF" />
+              </Pressable>
+            </View>
+            <Pressable
+              testID="add-to-cart-cta"
+              onPress={() => router.push("/delivery/cart")}
+              style={{
+                flex: 1, height: 46, borderRadius: radius.pill,
+                backgroundColor: colors.brandPrimary,
+                flexDirection: "row", alignItems: "center", justifyContent: "space-between",
+                paddingHorizontal: spacing.lg,
+              }}
+            >
+              <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "700" }}>Add to Cart</Text>
+              <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>RM {total.toFixed(2)}</Text>
             </Pressable>
           </View>
-          <Pressable
-            testID="add-to-cart-cta"
-            onPress={() => router.push("/delivery/cart")}
-            style={{
-              flex: 1, height: 48, borderRadius: radius.pill,
-              backgroundColor: colors.brandPrimary,
-              flexDirection: "row", alignItems: "center", justifyContent: "space-between",
-              paddingHorizontal: spacing.lg,
-            }}
-          >
-            <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "700" }}>Add to Cart</Text>
-            <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>RM {total.toFixed(2)}</Text>
-          </Pressable>
         </View>
-      </StickyCTA>
+      </KeyboardStickyView>
     </View>
   );
 }

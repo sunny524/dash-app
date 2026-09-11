@@ -1,13 +1,13 @@
-import { View, Text, Pressable, ScrollView, TextInput } from "react-native";
+import { View, Text, Pressable, TextInput, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { useState } from "react";
 
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 import { ScreenHeader } from "@/src/components/ScreenHeader";
-import { StickyCTA } from "@/src/components/Buttons";
 
 const days = [
   { day: "Fri", date: "23", month: "May" },
@@ -32,7 +32,11 @@ export default function BookForm() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.surfaceSecondary }}>
       <ScreenHeader title="Book a Table" onBack={() => router.back()} />
-      <ScrollView contentContainerStyle={{ padding: spacing.lg, gap: spacing.md, paddingBottom: 140 + insets.bottom }}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{ padding: spacing.lg, gap: spacing.md, paddingBottom: 120 + insets.bottom }}
+        bottomOffset={100}
+        keyboardShouldPersistTaps="handled"
+      >
         {/* Restaurant compact card */}
         <View style={{ backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md, ...shadow.card }}>
           <Image source={{ uri: "https://images.unsplash.com/photo-1767298113547-11e95951608b?w=200&q=80" }} style={{ width: 60, height: 60, borderRadius: radius.md }} />
@@ -136,22 +140,29 @@ export default function BookForm() {
             }}
           />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
-      <StickyCTA>
-        <Pressable
-          testID="confirm-booking-cta"
-          onPress={() => router.push("/booking/confirmation")}
-          style={{
-            backgroundColor: colors.brandPrimary, paddingVertical: 15,
-            borderRadius: radius.pill, flexDirection: "row", alignItems: "center",
-            paddingHorizontal: spacing.lg, gap: 8,
-          }}
-        >
-          <Text style={{ flex: 1, color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>Confirm Booking</Text>
-          <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: 13, fontWeight: "700" }}>{days[dayIdx].day} {days[dayIdx].date} • {time} • {party}p</Text>
-        </Pressable>
-      </StickyCTA>
+      <KeyboardStickyView offset={{ closed: 0, opened: -insets.bottom + 8 }}>
+        <View style={{
+          paddingHorizontal: spacing.lg, paddingTop: spacing.md,
+          paddingBottom: insets.bottom + spacing.md,
+          backgroundColor: colors.surface,
+          borderTopWidth: 1, borderTopColor: colors.border,
+        }}>
+          <Pressable
+            testID="confirm-booking-cta"
+            onPress={() => router.push("/booking/confirmation")}
+            style={{
+              backgroundColor: colors.brandPrimary, paddingVertical: 14,
+              borderRadius: radius.pill, flexDirection: "row", alignItems: "center",
+              paddingHorizontal: spacing.lg, gap: 8,
+            }}
+          >
+            <Text style={{ flex: 1, color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>Confirm Booking</Text>
+            <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: 12, fontWeight: "700" }}>{days[dayIdx].day} {days[dayIdx].date} • {time} • {party}p</Text>
+          </Pressable>
+        </View>
+      </KeyboardStickyView>
     </View>
   );
 }

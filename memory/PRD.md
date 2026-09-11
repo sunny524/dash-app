@@ -47,12 +47,19 @@ EasyEat is a mobile food-only ordering app prototype for the Malaysian market, i
 - **/rewards** — EasyPoints hub: dark hero with balance, gold→platinum progress bar, Rewards/History tabs, quick-redeem carousel, all rewards list (redeem/locked/claimed states), points activity ledger, "How EasyPoints work" explainer
 
 ## Reusable Components
-- `RestaurantCard` — used in all 4 flows (photo, cuisines, rating badge, ETA, distance, review count)
-- `ServiceTile` — 4 home tiles
+- `RestaurantCard` — used in all 4 flows, with **compact list variant** for search results (photo, cuisines, rating badge, ETA, distance, review count / promo)
+- `ServiceTile` — 4 home tiles (compact 1.15 aspect ratio)
 - `FilterChipRow` — horizontal, non-wrapping, sticky-ready
 - `StatusStepper` — vertical stepper for tracking + pickup status
 - `PillButton` / `StickyCTA` — pill-shaped primary CTAs anchored at bottom
 - `ScreenHeader` — safe-area aware sticky header with back button
+
+## Keyboard & Search UX
+- App is wrapped in `KeyboardProvider` from `react-native-keyboard-controller` at root
+- Screens with text inputs (splash/OTP, cart, menu item, booking form) use `KeyboardAwareScrollView` with `bottomOffset` so inputs auto-scroll above the keyboard
+- Sticky bottom CTAs (Add to Cart, Place Order, Confirm Booking) use `KeyboardStickyView` so they ride up above the keyboard when it opens
+- All ScrollViews use `keyboardShouldPersistTaps="handled"` + `keyboardDismissMode="on-drag"` for natural iOS dismissal
+- Home search filters restaurants live by name / cuisine / address; Delivery list search combines with chip filters ("Top Rated", "Under 25 min", "Promo", "$", "Halal") with an empty state + Clear filters CTA
 
 ## Design Tokens (`src/theme.ts`)
 - Primary brand: **#00B14F** (Grab-style green)

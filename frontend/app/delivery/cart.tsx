@@ -1,12 +1,12 @@
-import { View, Text, ScrollView, Pressable, TextInput } from "react-native";
+import { View, Text, Pressable, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller";
 import Ionicons from "@react-native-vector-icons/ionicons";
 
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 import { ScreenHeader } from "@/src/components/ScreenHeader";
-import { StickyCTA } from "@/src/components/Buttons";
 
 const items = [
   { id: "1", name: "Nasi Lemak Ayam Rendang", qty: 1, price: 15.9, addons: "Fried Egg, Medium Spice", image: "https://images.unsplash.com/photo-1677921755291-c39158477b8e?w=300&q=80" },
@@ -27,7 +27,11 @@ export default function Cart() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.surfaceSecondary }}>
       <ScreenHeader title="Checkout" onBack={() => router.back()} />
-      <ScrollView contentContainerStyle={{ padding: spacing.lg, paddingBottom: 140 + insets.bottom, gap: spacing.md }}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{ padding: spacing.lg, paddingBottom: 140 + insets.bottom, gap: spacing.md }}
+        bottomOffset={100}
+        keyboardShouldPersistTaps="handled"
+      >
         {/* Delivery address */}
         <Card>
           <SectionRow icon="location" title="Deliver to" edit="Change">
@@ -117,23 +121,30 @@ export default function Cart() {
             <SumRow label="Total" value={`RM ${total.toFixed(2)}`} bold />
           </View>
         </Card>
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
-      <StickyCTA>
-        <Pressable
-          testID="place-order-cta"
-          onPress={() => router.push("/delivery/tracking")}
-          style={{
-            backgroundColor: colors.brandPrimary,
-            paddingVertical: 15, borderRadius: radius.pill,
-            flexDirection: "row", alignItems: "center", paddingHorizontal: spacing.lg,
-          }}
-        >
-          <Text style={{ flex: 1, color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>Place Order</Text>
-          <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>RM {total.toFixed(2)}</Text>
-          <Ionicons name="arrow-forward" size={18} color="#FFFFFF" style={{ marginLeft: 8 }} />
-        </Pressable>
-      </StickyCTA>
+      <KeyboardStickyView offset={{ closed: 0, opened: -insets.bottom + 8 }}>
+        <View style={{
+          paddingHorizontal: spacing.lg, paddingTop: spacing.md,
+          paddingBottom: insets.bottom + spacing.md,
+          backgroundColor: colors.surface,
+          borderTopWidth: 1, borderTopColor: colors.border,
+        }}>
+          <Pressable
+            testID="place-order-cta"
+            onPress={() => router.push("/delivery/tracking")}
+            style={{
+              backgroundColor: colors.brandPrimary,
+              paddingVertical: 14, borderRadius: radius.pill,
+              flexDirection: "row", alignItems: "center", paddingHorizontal: spacing.lg,
+            }}
+          >
+            <Text style={{ flex: 1, color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>Place Order</Text>
+            <Text style={{ color: "#FFFFFF", fontSize: 15, fontWeight: "800" }}>RM {total.toFixed(2)}</Text>
+            <Ionicons name="arrow-forward" size={18} color="#FFFFFF" style={{ marginLeft: 8 }} />
+          </Pressable>
+        </View>
+      </KeyboardStickyView>
     </View>
   );
 }

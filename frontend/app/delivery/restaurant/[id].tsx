@@ -8,7 +8,7 @@ import { useState } from "react";
 
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 import { restaurants, menuItems } from "@/src/data/mock";
-import { PillButton, StickyCTA } from "@/src/components/Buttons";
+import { StickyCTA } from "@/src/components/Buttons";
 import { FilterChipRow } from "@/src/components/FilterChipRow";
 
 const categories = [
