@@ -61,10 +61,15 @@ export default function BookingsScreen() {
 
       <ScrollView contentContainerStyle={{ padding: spacing.lg, gap: spacing.md, paddingBottom: insets.bottom + 24 }}>
         {list.map((b) => (
-          <View key={b.id} style={{
-            backgroundColor: colors.surface, borderRadius: radius.lg,
-            overflow: "hidden", ...shadow.card,
-          }}>
+          <Pressable
+            key={b.id}
+            testID={`booking-card-${b.id}`}
+            onPress={() => router.push("/booking/confirmation")}
+            style={{
+              backgroundColor: colors.surface, borderRadius: radius.lg,
+              overflow: "hidden", ...shadow.card,
+            }}
+          >
             <View style={{ flexDirection: "row" }}>
               <Image source={{ uri: b.image }} style={{ width: 110, height: 130 }} />
               <View style={{ flex: 1, padding: spacing.md, justifyContent: "space-between" }}>
@@ -106,7 +111,7 @@ export default function BookingsScreen() {
                 <ActionBtn icon="close-circle-outline" label="Cancel" danger />
               </View>
             )}
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
     </View>

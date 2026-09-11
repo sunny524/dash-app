@@ -288,3 +288,168 @@ export const paymentMethods = [
   { id: "pm3", label: "DuitNow QR", type: "qr", icon: "qr-code" },
   { id: "pm4", label: "Cash on Delivery", type: "cash", icon: "cash" },
 ];
+
+
+// ----- Rewards / Loyalty -----
+export const rewardTiers = [
+  { id: "silver", label: "Silver", threshold: 0, color: "#B0B7C3" },
+  { id: "gold", label: "Gold", threshold: 2000, color: "#F5A623" },
+  { id: "platinum", label: "Platinum", threshold: 5000, color: "#7C6BFF" },
+];
+
+export const rewards = [
+  {
+    id: "rw1",
+    title: "Free Delivery",
+    subtitle: "Any restaurant • Min. RM15",
+    points: 300,
+    icon: "bicycle",
+    color: "#00B14F",
+    image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&q=80",
+    hot: true,
+  },
+  {
+    id: "rw2",
+    title: "RM5 Off Any Order",
+    subtitle: "Min. spend RM25",
+    points: 500,
+    icon: "pricetag",
+    color: "#FF6B35",
+    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80",
+  },
+  {
+    id: "rw3",
+    title: "Free Teh Tarik",
+    subtitle: "At any mamak partner",
+    points: 200,
+    icon: "cafe",
+    color: "#8B4513",
+    image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&q=80",
+  },
+  {
+    id: "rw4",
+    title: "RM10 Off Dine-in",
+    subtitle: "Table booking discount",
+    points: 800,
+    icon: "restaurant",
+    color: "#4A90E2",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
+  },
+  {
+    id: "rw5",
+    title: "20% Off Weekend",
+    subtitle: "Sat & Sun • Up to RM15",
+    points: 1200,
+    icon: "star",
+    color: "#7C6BFF",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
+  },
+  {
+    id: "rw6",
+    title: "Free Chicken Satay (5)",
+    subtitle: "At Satay Station",
+    points: 1500,
+    icon: "flame",
+    color: "#E23744",
+    image: "https://images.unsplash.com/photo-1696385793104-745d4dd65c5a?w=600&q=80",
+    locked: false,
+  },
+];
+
+export const rewardHistory = [
+  { id: "h1", title: "Free Delivery", date: "Yesterday", points: -300, status: "Used" },
+  { id: "h2", title: "Order at Ah Kau CKT", date: "Mon, 12 May", points: 29, status: "Earned" },
+  { id: "h3", title: "Table booking at Dim Sum Palace", date: "Sun, 11 May", points: 82, status: "Earned" },
+  { id: "h4", title: "RM5 Off Any Order", date: "Sat, 10 May", points: -500, status: "Used" },
+];
+
+// ----- Reviews -----
+export const reviewSummary = {
+  average: 4.8,
+  total: 1240,
+  breakdown: [
+    { stars: 5, count: 892, pct: 72 },
+    { stars: 4, count: 236, pct: 19 },
+    { stars: 3, count: 74, pct: 6 },
+    { stars: 2, count: 25, pct: 2 },
+    { stars: 1, count: 13, pct: 1 },
+  ],
+  tags: [
+    { label: "Delicious", count: 512, positive: true },
+    { label: "Fast delivery", count: 341, positive: true },
+    { label: "Great value", count: 287, positive: true },
+    { label: "Fresh food", count: 198, positive: true },
+    { label: "Generous portion", count: 156, positive: true },
+    { label: "Cold food", count: 12, positive: false },
+  ],
+};
+
+export const reviews = [
+  {
+    id: "rv1",
+    user: "Aina Yusof",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+    rating: 5,
+    date: "2 days ago",
+    verified: true,
+    text: "Best nasi lemak I've had in KL! Sambal was perfectly spicy and the chicken rendang was so tender. Will definitely order again 🔥",
+    photos: [
+      "https://images.unsplash.com/photo-1677921755291-c39158477b8e?w=400&q=80",
+      "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80",
+    ],
+    likes: 42,
+    ordered: "Nasi Lemak Ayam Rendang, Teh Tarik",
+  },
+  {
+    id: "rv2",
+    user: "Adam Rahim",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    rating: 5,
+    date: "5 days ago",
+    verified: true,
+    text: "Arrived in 18 minutes — still hot! Portion is huge, RM15 is very worth it. Rider was super friendly too.",
+    photos: [],
+    likes: 28,
+    ordered: "Nasi Lemak Sambal Sotong",
+  },
+  {
+    id: "rv3",
+    user: "Priya Sharma",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    rating: 4,
+    date: "1 week ago",
+    verified: true,
+    text: "Great flavours but I asked for extra spicy and it was only medium. Otherwise the food was fresh and packed well.",
+    photos: [
+      "https://images.unsplash.com/photo-1552611052-33e04de081de?w=400&q=80",
+    ],
+    likes: 15,
+    ordered: "Mee Goreng Mamak",
+  },
+  {
+    id: "rv4",
+    user: "Kevin Tan",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+    rating: 5,
+    date: "2 weeks ago",
+    verified: true,
+    text: "My family's new go-to for weekend brunch. The roti canai is flaky and the curry is on point. Highly recommend!",
+    photos: [
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80",
+    ],
+    likes: 63,
+    ordered: "Roti Canai, Teh Tarik x2",
+  },
+  {
+    id: "rv5",
+    user: "Sarah Lim",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+    rating: 3,
+    date: "3 weeks ago",
+    verified: false,
+    text: "Food was okay but delivery took almost an hour on a rainy day. Sambal was really tasty though.",
+    photos: [],
+    likes: 4,
+    ordered: "Nasi Lemak Ayam Rendang",
+  },
+];

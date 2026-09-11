@@ -143,7 +143,10 @@ export default function Bill() {
       </ScrollView>
 
       <StickyCTA>
-        <Pressable style={{
+        <Pressable
+          testID="pay-bill-cta"
+          onPress={() => router.push("/(tabs)/orders")}
+          style={{
           backgroundColor: colors.brandPrimary, paddingVertical: 15,
           borderRadius: radius.pill, flexDirection: "row",
           alignItems: "center", paddingHorizontal: spacing.lg,

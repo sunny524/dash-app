@@ -59,7 +59,9 @@ export default function RestaurantDetail() {
 
         {/* Info card */}
         <View style={{ marginHorizontal: spacing.lg, marginTop: -32, backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing.md, flexDirection: "row", ...shadow.card }}>
-          <Info icon="star" value={r.rating.toFixed(1)} label={`${r.reviews}+ reviews`} accent />
+          <Pressable testID="view-reviews-btn" onPress={() => router.push("/delivery/reviews")} style={{ flex: 1 }}>
+            <Info icon="star" value={r.rating.toFixed(1)} label={`${r.reviews}+ reviews`} accent />
+          </Pressable>
           <Divider />
           <Info icon="time-outline" value={`${r.etaMin} min`} label="ETA" />
           <Divider />

@@ -2,10 +2,12 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import { useRouter } from "expo-router";
 
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 
 const settings = [
+  { icon: "star", label: "EasyPoints & Rewards", sub: "2,410 pts • Redeem now", route: "/rewards" },
   { icon: "location", label: "Saved Addresses", sub: "3 saved" },
   { icon: "card", label: "Payment Methods", sub: "Visa •••• 4821 + 3 more" },
   { icon: "heart", label: "Favorites", sub: "12 restaurants" },
@@ -20,6 +22,7 @@ const settings = [
 export default function AccountScreen() {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.surfaceSecondary }}>
@@ -60,11 +63,15 @@ export default function AccountScreen() {
 
         {/* Reward banner */}
         <View style={{ paddingHorizontal: spacing.lg, marginTop: spacing.lg }}>
-          <View style={{
-            backgroundColor: colors.onSurface, borderRadius: radius.lg,
-            padding: spacing.lg, flexDirection: "row", alignItems: "center", gap: spacing.md,
-            ...shadow.card,
-          }}>
+          <Pressable
+            testID="rewards-banner"
+            onPress={() => router.push("/rewards")}
+            style={{
+              backgroundColor: colors.onSurface, borderRadius: radius.lg,
+              padding: spacing.lg, flexDirection: "row", alignItems: "center", gap: spacing.md,
+              ...shadow.card,
+            }}
+          >
             <View style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: colors.brandPrimary, alignItems: "center", justifyContent: "center" }}>
               <Ionicons name="gift" size={22} color="#FFFFFF" />
             </View>
@@ -73,7 +80,7 @@ export default function AccountScreen() {
               <Text style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>590 more to next reward</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.7)" />
-          </View>
+          </Pressable>
         </View>
 
         {/* Settings list */}
@@ -86,6 +93,9 @@ export default function AccountScreen() {
             <Pressable
               key={s.label}
               testID={`setting-${s.label.toLowerCase().replace(/\s+/g, "-")}`}
+              onPress={() => {
+                if ((s as any).route) router.push((s as any).route);
+              }}
               style={{
                 flexDirection: "row", alignItems: "center", gap: spacing.md,
                 paddingHorizontal: spacing.md, paddingVertical: spacing.md,

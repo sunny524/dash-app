@@ -68,10 +68,15 @@ export default function OrdersScreen() {
         </Pressable>
 
         {filtered.map((o) => (
-          <View key={o.id} style={{
-            backgroundColor: colors.surface, borderRadius: radius.lg,
-            padding: spacing.md, flexDirection: "row", gap: spacing.md, ...shadow.card,
-          }}>
+          <Pressable
+            key={o.id}
+            testID={`order-card-${o.id}`}
+            onPress={() => router.push(o.type === "Pickup" ? "/pickup/status" : "/delivery/tracking")}
+            style={{
+              backgroundColor: colors.surface, borderRadius: radius.lg,
+              padding: spacing.md, flexDirection: "row", gap: spacing.md, ...shadow.card,
+            }}
+          >
             <Image source={{ uri: o.image }} style={{ width: 72, height: 72, borderRadius: radius.md }} />
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
@@ -91,7 +96,7 @@ export default function OrdersScreen() {
                 </View>
               </View>
             </View>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
     </View>

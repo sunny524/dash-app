@@ -9,7 +9,7 @@ EasyEat is a mobile food-only ordering app prototype for the Malaysian market, i
 - Grab-inspired UX: rounded cards, pill buttons, filter chips, service tile grid, bold green (#00B14F) accent
 - Malaysian restaurant names and food imagery via Unsplash
 
-## Delivered Screens (22 total)
+## Delivered Screens (24 total)
 
 ### Onboarding
 - **/** — Splash / phone OTP login (with OTP verify state)
@@ -17,13 +17,14 @@ EasyEat is a mobile food-only ordering app prototype for the Malaysian market, i
 
 ### Tabs (Home, Orders, Bookings, Account)
 - **/(tabs)/home** — Search, 4 service tiles, promo carousel, cuisine chips, restaurants near you
-- **/(tabs)/orders** — Tabbed history (All / Delivery / Dine-in / Pickup) + live order banner
-- **/(tabs)/bookings** — Upcoming/Past reservations with add-to-calendar & cancel actions
-- **/(tabs)/account** — Profile, EasyPoints reward banner, settings list
+- **/(tabs)/orders** — Tabbed history + live order banner (cards tap through to tracking/pickup status)
+- **/(tabs)/bookings** — Upcoming/Past reservations (cards tap through to confirmation)
+- **/(tabs)/account** — Profile, EasyPoints reward banner (→ /rewards), settings list
 
 ### Delivery
 - **/delivery/restaurants** — Restaurant list with filter chips
-- **/delivery/restaurant/[id]** — Restaurant detail with parallax hero + menu categories
+- **/delivery/restaurant/[id]** — Restaurant detail (rating tap → reviews)
+- **/delivery/reviews** — Rich reviews: 4.8★ score, 5-bar breakdown, tag cloud, filter chips (All/5★/4★/3★/Photos/Verified), reviewer cards with avatar, verified badge, photos, likes, reply
 - **/delivery/item** — Menu item with spice level, add-ons, quantity stepper
 - **/delivery/cart** — Cart + address + delivery time + payment + promo + summary
 - **/delivery/tracking** — Live map + rider card + status stepper
@@ -31,7 +32,7 @@ EasyEat is a mobile food-only ordering app prototype for the Malaysian market, i
 ### QR Dine-in
 - **/dine-in/scanner** — QR scanner viewfinder + manual code entry
 - **/dine-in/menu** — Table-aware menu grid + Call Waiter FAB + View Tab CTA
-- **/dine-in/bill** — Bill breakdown + split bill toggle + payment methods
+- **/dine-in/bill** — Bill breakdown + split bill toggle + payment methods (pay → orders)
 
 ### Pickup
 - **/pickup/restaurants** — Pickup-only restaurant list
@@ -41,6 +42,9 @@ EasyEat is a mobile food-only ordering app prototype for the Malaysian market, i
 - **/booking/restaurants** — Booking-enabled restaurant list
 - **/booking/book** — Date ribbon, time slot grid, party size stepper, special requests
 - **/booking/confirmation** — Success hero + booking card + add-to-calendar actions
+
+### Loyalty
+- **/rewards** — EasyPoints hub: dark hero with balance, gold→platinum progress bar, Rewards/History tabs, quick-redeem carousel, all rewards list (redeem/locked/claimed states), points activity ledger, "How EasyPoints work" explainer
 
 ## Reusable Components
 - `RestaurantCard` — used in all 4 flows (photo, cuisines, rating badge, ETA, distance, review count)
