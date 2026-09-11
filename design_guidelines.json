@@ -1,0 +1,219 @@
+{
+  "app_name": "EasyEat",
+  "personality": "1 iOS-Native Clean (infused with 4 Tactile / Playful for Grab-style roundedness)",
+  "personality_one_liner": "A highly tactile, approachable, and functional everyday food companion relying on soft geometry, crisp whitespace, and a high-energy brand green.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#1C1C1E",
+    "surfaceSecondary": "#F5F6F8",
+    "onSurfaceSecondary": "#3A3A3C",
+    "surfaceTertiary": "#E8EBEF",
+    "onSurfaceTertiary": "#48484A",
+    "surfaceInverse": "#1C1C1E",
+    "onSurfaceInverse": "#FFFFFF",
+    "brand": "#00B14F",
+    "onBrand": "#FFFFFF",
+    "brandPrimary": "#00B14F",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#E5F7ED",
+    "onBrandSecondary": "#009040",
+    "brandTertiary": "#F0FDF4",
+    "onBrandTertiary": "#00B14F",
+    "success": "#34C759",
+    "onSuccess": "#FFFFFF",
+    "warning": "#FF9500",
+    "onWarning": "#FFFFFF",
+    "error": "#FF3B30",
+    "onError": "#FFFFFF",
+    "info": "#48484A",
+    "onInfo": "#FFFFFF",
+    "border": "#E8EBEF",
+    "borderStrong": "#C7C7CC",
+    "divider": "#F2F2F7",
+    "muted": "#8E8E93"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous vertical breathing room. Cards never flush to screen edge. Sticky primary actions get proper scroll padding at bottom.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Ionicons",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use glass for sticky bottom tab bar.",
+      "Use glass for sticky bottom CTA containers (e.g., View Cart, Confirm Booking).",
+      "Use glass for sticky headers over scrolling menus."
+    ],
+    "dont's": [
+      "Never use on normal list rows or form inputs.",
+      "Never use without a tinted background layer to ensure readability."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Onboarding & Auth",
+      "purpose": "Quick entry via OTP and location permission.",
+      "states": {
+        "loading": "Centered spinner on surface.",
+        "empty": "N/A",
+        "error": "Standard inline error for invalid OTP."
+      },
+      "layout": "Splash transitions into a clean bottom sheet for phone entry over a branded background. Followed by a full-screen location permission view with a map graphic and a sticky 'Use Current Location' pill CTA."
+    },
+    {
+      "name": "Home",
+      "purpose": "Primary navigation hub bridging all 4 core services.",
+      "states": {
+        "loading": "Skeleton loaders for cards and tiles.",
+        "empty": "N/A",
+        "error": "Banner at top: 'Unable to load feed', Retry button."
+      },
+      "layout": "Sticky Header: Location selector (glass) + Profile avatar. Row 1: 2x2 grid of large 'Service Tiles' (Delivery, Dine-in, Pickup, Book a Table) using brandSecondary backgrounds and distinct icons. Row 2: Horizontal scroll of Promo Banners (using gradient/image scrims). Row 3: Horizontal scrollable filter chips (Halal, Nasi Lemak, Western, etc.). Row 4: Vertical list of 'Restaurants Near You' cards (Edge-to-edge images with bottom radius, metadata below)."
+    },
+    {
+      "name": "Delivery (List & Detail)",
+      "purpose": "Browse and select restaurants for delivery.",
+      "states": {
+        "loading": "Skeleton restaurant cards.",
+        "empty": "Illustration of an empty plate: 'No restaurants found for this filter.' + Clear Filters CTA.",
+        "error": "Error message with Retry."
+      },
+      "layout": "List: Sticky filter header over a vertical ScrollView of Restaurant Cards. Detail: Parallax hero image with gradient-to-dark scrim, back button, and overlaid restaurant name/rating. Scrolling menu sections with 'Add' pill buttons. Sticky glass 'View Cart' CTA at the bottom."
+    },
+    {
+      "name": "Menu Item Customization",
+      "purpose": "Configure a single item before adding to cart.",
+      "states": {
+        "loading": "Spinner",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Full-screen modal or sheet. Hero image of food. Checkbox/Radio lists for add-ons (e.g., 'Extra Sambal', 'Fried Egg'). Sticky 'Add to Cart - RM 15.00' button at the bottom."
+    },
+    {
+      "name": "Cart & Checkout",
+      "purpose": "Review order and confirm payment.",
+      "states": {
+        "loading": "Processing overlay.",
+        "empty": "Illustration of empty cart + 'Find something delicious' CTA.",
+        "error": "Payment failed state."
+      },
+      "layout": "List of cart items with increment/decrement steppers. Subtotal breakdown. Delivery address summary. Sticky glass checkout CTA."
+    },
+    {
+      "name": "Order Tracking",
+      "purpose": "Live status of the delivery.",
+      "states": {
+        "loading": "Map loading.",
+        "empty": "N/A",
+        "error": "Unable to fetch status."
+      },
+      "layout": "Top half: Map view. Bottom half: Bottom sheet containing a vertical status stepper (Preparing -> Picked Up -> Arriving), driver details, and contact buttons."
+    },
+    {
+      "name": "Dine-in Flow",
+      "purpose": "Table QR scanning, ordering, and split bill.",
+      "states": {
+        "loading": "Camera loading.",
+        "empty": "No items added.",
+        "error": "Invalid QR code."
+      },
+      "layout": "QR Scanner screen -> transitions to a Restaurant Menu tailored for Dine-in (shows Table # in header). Sticky 'View Tab / Pay' CTA. Payment screen includes a 'Split Bill' toggle and 'Call Waiter' floating action button (FAB)."
+    },
+    {
+      "name": "Pickup Flow",
+      "purpose": "Order ahead to skip queues.",
+      "states": {
+        "loading": "Loading slots.",
+        "empty": "No pickup slots available today.",
+        "error": "Error fetching times."
+      },
+      "layout": "Similar to Delivery but includes a sticky horizontal time-slot selector (e.g., '12:00 PM', '12:15 PM') before checkout. Post-order screen highlights a large Order Number and 'Ready By' time."
+    },
+    {
+      "name": "Table Booking",
+      "purpose": "Reserve a table for the future.",
+      "states": {
+        "loading": "Checking availability.",
+        "empty": "No tables available.",
+        "error": "Network error."
+      },
+      "layout": "Form layout. Horizontal date ribbon. Grid of available times. Party size counter (+/-). Special requests text area. Sticky 'Confirm Booking' CTA."
+    },
+    {
+      "name": "Account & History",
+      "purpose": "User settings and record of activity.",
+      "states": {
+        "loading": "Fetching profile.",
+        "empty": "No past orders.",
+        "error": "Error."
+      },
+      "layout": "Top-level tabs for Orders & Bookings history. Vertical list of settings rows (Saved Addresses, Payments, Favorites) using tinted icon containers (brandTertiary rounded square + brand icon)."
+    }
+  ],
+  "images": {
+    "nasi_lemak_hero": {
+      "url": "https://images.unsplash.com/photo-1677921755291-c39158477b8e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHxOYXNpJTIwTGVtYWslMjBtYWxheXNpYW4lMjBmb29kfGVufDB8fHx8MTc4OTEyNTg0NHww&ixlib=rb-4.1.0&q=85",
+      "alt": "Nasi Lemak plate"
+    },
+    "satay_skewers": {
+      "url": "https://images.unsplash.com/photo-1696385793104-745d4dd65c5a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwyfHxTYXRheSUyMHNrZXdlcnMlMjBtYWxheXNpYW4lMjBmb29kfGVufDB8fHx8MTc4OTEyNTg0NHww&ixlib=rb-4.1.0&q=85",
+      "alt": "Chicken satay skewers with peanut sauce"
+    },
+    "dim_sum": {
+      "url": "https://images.unsplash.com/photo-1767298113547-11e95951608b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwzfHxkaW0lMjBzdW0lMjByZXN0YXVyYW50JTIwZm9vZHxlbnwwfHx8fDE3ODkxMjU4NDR8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Dim sum on a table"
+    },
+    "restaurant_interior": {
+      "url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXN0YXVyYW50JTIwaW50ZXJpb3IlMjB3aWRlfGVufDB8fHx8MTc4OTEyNTg0NHww&ixlib=rb-4.1.0&q=85",
+      "alt": "Modern restaurant interior"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Design entirely in high-fidelity static screens using mock data. No backend or navigation interactivity is required per the brief.",
+    "Enforce strict adherence to the brand color #00B14F. Do not use blue or purple anywhere in the UI.",
+    "Use Malaysian mock data: Nasi Lemak Village, Ah Kau Char Kway Teow, Roti Canai Maju, Satay Station, Dim Sum Palace.",
+    "Implement the 4 Home screen tiles exactly as 'Delivery', 'Dine-in', 'Pickup', and 'Book a Table' positioned prominently below the location header.",
+    "Use pill-shaped buttons (radius 'pill') for primary actions to mimic the tactile Grab style.",
+    "Implement glassmorphism on the bottom tab bar and sticky 'View Cart'/'Confirm' CTAs at the bottom of scrolling screens to ensure they remain anchored and highly visible.",
+    "For restaurant/food imagery, always use the provided Unsplash URLs and ensure any text rendered over imagery uses a vertical gradient scrim (transparent to surfaceInverse) for readability.",
+    "List items and setting rows should use 'tinted icon containers' (a brandTertiary rounded square containing the icon) for visual polish."
+  ]
+}
