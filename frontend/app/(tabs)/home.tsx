@@ -63,7 +63,7 @@ export default function Home() {
           />
         </View>
 
-        {/* Search bar - always sticky under header */}
+        {/* Search bar */}
         <View style={{ paddingHorizontal: spacing.lg, paddingBottom: 8 }}>
           <View style={{
             flexDirection: "row", alignItems: "center", gap: spacing.sm,
@@ -101,87 +101,83 @@ export default function Home() {
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
       >
-        {searching ? (
-          <View style={{ paddingHorizontal: spacing.lg, paddingTop: spacing.md }}>
-            <Text style={{ fontSize: 13, color: colors.muted, marginBottom: spacing.sm }}>
-              {filtered.length} result{filtered.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;
-            </Text>
-            {filtered.length === 0 ? (
-              <View style={{ paddingVertical: 40, alignItems: "center" }}>
-                <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: colors.surfaceSecondary, alignItems: "center", justifyContent: "center" }}>
-                  <Ionicons name="search" size={24} color={colors.muted} />
-                </View>
-                <Text style={{ fontSize: 15, fontWeight: "700", color: colors.onSurface, marginTop: spacing.md }}>No matches yet</Text>
-                <Text style={{ fontSize: 13, color: colors.muted, marginTop: 4, textAlign: "center" }}>
-                  Try a different cuisine, dish or restaurant name
-                </Text>
-              </View>
-            ) : (
-              filtered.map((r) => (
-                <RestaurantCard key={r.id} r={r} compact onPress={() => router.push(`/delivery/restaurant/${r.id}`)} />
-              ))
-            )}
+        {/* Always show tiles + promos so tapping search doesn't reflow the whole screen */}
+        <View style={{ paddingHorizontal: spacing.lg }}>
+          <View style={{ marginTop: 6, gap: spacing.md }}>
+            <View style={{ flexDirection: "row", gap: spacing.md }}>
+              <ServiceTile testID="tile-delivery" icon="bicycle" label="Delivery" subtitle="From RM3.90"
+                onPress={() => router.push("/delivery/restaurants")} badge="20% OFF" />
+              <ServiceTile testID="tile-dine-in" icon="qr-code" label="Dine-in" subtitle="Scan table QR"
+                onPress={() => router.push("/dine-in/scanner")} />
+            </View>
+            <View style={{ flexDirection: "row", gap: spacing.md }}>
+              <ServiceTile testID="tile-pickup" icon="bag-handle" label="Pickup" subtitle="Skip the queue"
+                onPress={() => router.push("/pickup/restaurants")} />
+              <ServiceTile testID="tile-booking" icon="calendar" label="Book a Table" subtitle="Reserve ahead"
+                onPress={() => router.push("/booking/restaurants")} />
+            </View>
           </View>
-        ) : (
-          <>
-            <View style={{ paddingHorizontal: spacing.lg }}>
-              {/* Service tiles 2x2 - compact */}
-              <View style={{ marginTop: 6, gap: spacing.md }}>
-                <View style={{ flexDirection: "row", gap: spacing.md }}>
-                  <ServiceTile testID="tile-delivery" icon="bicycle" label="Delivery" subtitle="From RM3.90"
-                    onPress={() => router.push("/delivery/restaurants")} badge="20% OFF" />
-                  <ServiceTile testID="tile-dine-in" icon="qr-code" label="Dine-in" subtitle="Scan table QR"
-                    onPress={() => router.push("/dine-in/scanner")} />
-                </View>
-                <View style={{ flexDirection: "row", gap: spacing.md }}>
-                  <ServiceTile testID="tile-pickup" icon="bag-handle" label="Pickup" subtitle="Skip the queue"
-                    onPress={() => router.push("/pickup/restaurants")} />
-                  <ServiceTile testID="tile-booking" icon="calendar" label="Book a Table" subtitle="Reserve ahead"
-                    onPress={() => router.push("/booking/restaurants")} />
-                </View>
-              </View>
 
-              <Text style={sectionTitle(colors)}>Promos for you</Text>
-            </View>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: spacing.lg, gap: spacing.md }}
-            >
-              {promos.map((p) => (
-                <Pressable key={p.id} style={{
-                  width: 250, height: 110, borderRadius: radius.lg, overflow: "hidden",
-                  backgroundColor: p.color, ...shadow.card,
-                }}>
-                  <Image source={{ uri: p.image }} style={{ width: "100%", height: "100%", opacity: 0.5 }} contentFit="cover" />
-                  <LinearGradient
-                    colors={[p.color + "E6", p.color + "CC"]}
-                    style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, padding: spacing.md, justifyContent: "space-between" }}
-                  >
-                    <View style={{ backgroundColor: "rgba(255,255,255,0.25)", alignSelf: "flex-start", paddingHorizontal: 8, paddingVertical: 2, borderRadius: radius.pill }}>
-                      <Text style={{ color: "#FFFFFF", fontSize: 9, fontWeight: "800" }}>LIMITED TIME</Text>
-                    </View>
-                    <View>
-                      <Text style={{ color: "#FFFFFF", fontSize: 18, fontWeight: "800" }}>{p.title}</Text>
-                      <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: 12 }}>{p.subtitle}</Text>
-                    </View>
-                  </LinearGradient>
-                </Pressable>
-              ))}
-            </ScrollView>
+          {!searching && <Text style={sectionTitle(colors)}>Promos for you</Text>}
+        </View>
 
-            <View style={{ paddingHorizontal: spacing.lg, paddingTop: spacing.md }}>
-              <Text style={{ fontSize: 16, fontWeight: "800", color: colors.onSurface, marginBottom: 6 }}>Restaurants near you</Text>
-            </View>
-            <FilterChipRow items={cuisineChips} selected={chip} onSelect={setChip} />
-
-            <View style={{ paddingHorizontal: spacing.lg, paddingTop: spacing.sm }}>
-              {filtered.map((r) => (
-                <RestaurantCard key={r.id} r={r} onPress={() => router.push(`/delivery/restaurant/${r.id}`)} />
-              ))}
-            </View>
-          </>
+        {!searching && (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: spacing.lg, gap: spacing.md }}
+          >
+            {promos.map((p) => (
+              <Pressable key={p.id} style={{
+                width: 250, height: 110, borderRadius: radius.lg, overflow: "hidden",
+                backgroundColor: p.color, ...shadow.card,
+              }}>
+                <Image source={{ uri: p.image }} style={{ width: "100%", height: "100%", opacity: 0.5 }} contentFit="cover" />
+                <LinearGradient
+                  colors={[p.color + "E6", p.color + "CC"]}
+                  style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, padding: spacing.md, justifyContent: "space-between" }}
+                >
+                  <View style={{ backgroundColor: "rgba(255,255,255,0.25)", alignSelf: "flex-start", paddingHorizontal: 8, paddingVertical: 2, borderRadius: radius.pill }}>
+                    <Text style={{ color: "#FFFFFF", fontSize: 9, fontWeight: "800" }}>LIMITED TIME</Text>
+                  </View>
+                  <View>
+                    <Text style={{ color: "#FFFFFF", fontSize: 18, fontWeight: "800" }}>{p.title}</Text>
+                    <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: 12 }}>{p.subtitle}</Text>
+                  </View>
+                </LinearGradient>
+              </Pressable>
+            ))}
+          </ScrollView>
         )}
+
+        <View style={{ paddingHorizontal: spacing.lg, paddingTop: spacing.md }}>
+          <Text style={{ fontSize: 16, fontWeight: "800", color: colors.onSurface, marginBottom: 6 }}>
+            {searching ? `Results for "${query}"` : "Restaurants near you"}
+          </Text>
+        </View>
+        <FilterChipRow items={cuisineChips} selected={chip} onSelect={setChip} />
+
+        <View style={{ paddingHorizontal: spacing.lg, paddingTop: spacing.sm }}>
+          {filtered.length === 0 ? (
+            <View style={{ paddingVertical: 40, alignItems: "center" }}>
+              <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: colors.surfaceSecondary, alignItems: "center", justifyContent: "center" }}>
+                <Ionicons name="search" size={24} color={colors.muted} />
+              </View>
+              <Text style={{ fontSize: 15, fontWeight: "700", color: colors.onSurface, marginTop: spacing.md }}>No matches yet</Text>
+              <Text style={{ fontSize: 13, color: colors.muted, marginTop: 4, textAlign: "center" }}>
+                Try a different cuisine, dish or restaurant name
+              </Text>
+            </View>
+          ) : (
+            filtered.map((r) =>
+              searching ? (
+                <RestaurantCard key={r.id} r={r} compact onPress={() => router.push(`/delivery/restaurant/${r.id}`)} />
+              ) : (
+                <RestaurantCard key={r.id} r={r} onPress={() => router.push(`/delivery/restaurant/${r.id}`)} />
+              )
+            )
+          )}
+        </View>
       </ScrollView>
     </View>
   );

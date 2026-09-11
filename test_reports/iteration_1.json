@@ -1,0 +1,32 @@
+{
+  "summary": "Verified both bug fixes in EasyEat Expo (frontend-only). Bug 1 (OTP keyboard flicker on splash) and Bug 2 (Home search reflow) are both resolved. No regressions in the delivery → restaurant → item → cart flow, Rewards, or Reviews screens. Two minor observations: (a) Special instructions TextInput on item detail has no testID, so keyboard-open sticky-CTA behavior could only be indirectly verified (CTA remained visible after add-to-cart tap and item flow completed); (b) Repeated console warning: '\"shadow*\" style props are deprecated. Use \"boxShadow\"' — non-blocking but should be migrated.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": [
+      {"component": "shadow* style props", "issue": "Console warning repeats on every screen: '\"shadow*\" style props are deprecated. Use \"boxShadow\"'. Likely from src/theme shadow.card or a shared component (RestaurantCard/promo). Migrate shadowColor/shadowOffset/shadowOpacity/shadowRadius to boxShadow. Non-blocking but noisy."}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Optional) Add testID=\"special-instructions\" to the TextInput at /app/frontend/app/delivery/item.tsx:79 so future automation can verify KeyboardStickyView keeps the Add to Cart CTA visible while typing.",
+    "(Optional) Replace deprecated shadow* style props with boxShadow in src/theme.ts (shadow.card) and any inline card shadows to silence RN Web warnings."
+  ],
+  "critical_code_review_comments": [
+    "OTP fix in app/index.tsx correctly uses requestAnimationFrame + autoFocus only on the first box (i===0). blurOnSubmit={false} and caretHidden are set. Backspace path (empty c && i>0) refocuses previous box. Verified end-to-end: typing 1→2→3→4 never yields non-otp focus events (focus log inspected via focusin/focusout listeners).",
+    "Home search fix in app/(tabs)/home.tsx: tiles + FilterChipRow are now rendered unconditionally at the top of the ScrollView. Only the section title toggles and the promo carousel is conditioned on `!searching`. Verified: tile-delivery/dine-in/pickup/booking and chip-all remain mounted before tap, after tap (no query), and while typing 'dim'.",
+    "'shadow*' RN Web deprecation warning noticed on every screen; not caused by these bug fixes."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Frontend URL: EXPO_PUBLIC_BACKEND_URL in /app/frontend/.env. Flow to reach Home: tap send-otp-button → type into otp-0 (autoFocus lands on it, 4 digits type in a row) → verify-otp-button → continue-button on /location → home tab (tile-delivery visible). restaurant-card-r1 appears twice on delivery screen because Home is preserved in the ScrollView above the deliver list; use scrollIntoView + click via evaluate to target the delivery-page instance. Cart route reached via delivery/restaurant/r1 → menu-item-m1 → add-to-cart-cta → place-order-cta.",
+  "rca_of_issue": "Bug 1 root cause was synchronous focus() inside setState causing React Native Web to blur the current input before mounting the next one, producing a visible keyboard flicker on native. Wrapping the .focus() in requestAnimationFrame (and asserting autoFocus only on the first box, plus blurOnSubmit={false}) ensures the focus transition happens after React commits so no intermediate blur is observed. Verified via focusin/focusout listener: only otp-* elements appear in the focus log.\n\nBug 2 root cause was a conditional render that swapped the entire home layout when the search input was focused/typed, unmounting tiles/chips/promos. Fix keeps tiles and FilterChipRow always mounted; only the section title text toggles and the promo carousel is conditionally rendered on `searching`. Verified: DOM count of tile-delivery, tile-dine-in, tile-pickup, tile-booking, chip-all is stable across the three states (idle, focused-empty, typing 'dim')."
+}

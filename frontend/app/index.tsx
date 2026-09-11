@@ -17,11 +17,16 @@ export default function Index() {
   const [phone, setPhone] = useState("12 345 6789");
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const otpRefs = useRef<Array<TextInput | null>>([]);
+  const otpRefs = useRef<(TextInput | null)[]>([]);
 
   const handleOtp = (i: number, t: string) => {
-    const n = [...otp]; n[i] = t.slice(-1); setOtp(n);
-    if (t && i < 3) otpRefs.current[i + 1]?.focus();
+    const c = t.slice(-1);
+    const n = [...otp]; n[i] = c; setOtp(n);
+    if (c && i < 3) {
+      requestAnimationFrame(() => otpRefs.current[i + 1]?.focus());
+    } else if (!c && i > 0) {
+      requestAnimationFrame(() => otpRefs.current[i - 1]?.focus());
+    }
   };
 
   return (
@@ -131,6 +136,10 @@ export default function Index() {
                     placeholderTextColor={colors.muted}
                     maxLength={1}
                     keyboardType="number-pad"
+                    blurOnSubmit={false}
+                    autoFocus={i === 0}
+                    selectTextOnFocus
+                    caretHidden
                     style={{
                       width: 60, height: 60, borderRadius: radius.lg,
                       backgroundColor: colors.surfaceSecondary,
