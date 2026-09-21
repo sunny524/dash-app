@@ -19,7 +19,7 @@ export default function Summary() {
 
   return (
     <View style={{ flex: 1, backgroundColor: c.bg }}>
-      <LinearGradient colors={[c.brand, "#008C3E"]} style={{ paddingTop: insets.top + spacing.md, paddingBottom: spacing.xl, alignItems: "center" }}>
+      <LinearGradient colors={[c.brand, "#8B1A24"]} style={{ paddingTop: insets.top + spacing.md, paddingBottom: spacing.xl, alignItems: "center" }}>
         <View style={{
           width: 84, height: 84, borderRadius: 42,
           backgroundColor: "rgba(255,255,255,0.2)",

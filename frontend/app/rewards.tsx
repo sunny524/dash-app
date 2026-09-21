@@ -27,7 +27,7 @@ export default function Rewards() {
       {/* Hero */}
       <View style={{ paddingTop: insets.top, backgroundColor: colors.onSurface }}>
         <LinearGradient
-          colors={[colors.onSurface, "#0A2E1A"]}
+          colors={[colors.onSurface, "#3A0F14"]}
           style={{ paddingHorizontal: spacing.lg, paddingBottom: spacing.xl }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: spacing.md }}>
@@ -42,8 +42,8 @@ export default function Rewards() {
 
           <View style={{ alignItems: "center", marginTop: spacing.md }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 10, paddingVertical: 4, borderRadius: radius.pill, backgroundColor: "rgba(245,166,35,0.2)" }}>
-              <Ionicons name="star" size={12} color="#F5A623" />
-              <Text style={{ fontSize: 11, fontWeight: "800", color: "#F5A623", letterSpacing: 0.5 }}>GOLD MEMBER</Text>
+              <Ionicons name="star" size={12} color="#E23744" />
+              <Text style={{ fontSize: 11, fontWeight: "800", color: "#E23744", letterSpacing: 0.5 }}>GOLD MEMBER</Text>
             </View>
             <Text style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", marginTop: spacing.md }}>Your balance</Text>
             <View style={{ flexDirection: "row", alignItems: "baseline", marginTop: 2 }}>

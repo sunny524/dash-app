@@ -51,7 +51,7 @@ export default function RiderHome() {
         {/* Online toggle hero */}
         <View style={{ marginHorizontal: spacing.lg, marginTop: spacing.sm }}>
           <LinearGradient
-            colors={online ? [c.brand, "#008C3E"] : [c.bg2, c.bg3]}
+            colors={online ? [c.brand, "#8B1A24"] : [c.bg2, c.bg3]}
             style={{ borderRadius: radius.lg, padding: spacing.lg }}
           >
             <View style={{ flexDirection: "row", alignItems: "center" }}>

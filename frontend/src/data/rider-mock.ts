@@ -11,7 +11,7 @@ export const rider = {
   textMuted: "#66707C",
   brand: "#E23744",
   brandDim: "#3A1519",
-  warning: "#F5A623",
+  warning: "#E23744",
   error: "#FF453A",
   live: "#FF5C6C",
   overlay: "rgba(0,0,0,0.6)",

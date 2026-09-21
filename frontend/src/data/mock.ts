@@ -188,14 +188,14 @@ export const promos = [
     id: "p2",
     title: "50% OFF Lunch",
     subtitle: "Weekdays 11am–2pm",
-    color: "#FF6B35",
+    color: "#B32734",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
   },
   {
     id: "p3",
     title: "RM10 Cashback",
     subtitle: "Book a table this week",
-    color: "#4A90E2",
+    color: "#8B1A24",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
   },
 ];
@@ -292,9 +292,9 @@ export const paymentMethods = [
 
 // ----- Rewards / Loyalty -----
 export const rewardTiers = [
-  { id: "silver", label: "Silver", threshold: 0, color: "#B0B7C3" },
-  { id: "gold", label: "Gold", threshold: 2000, color: "#F5A623" },
-  { id: "platinum", label: "Platinum", threshold: 5000, color: "#7C6BFF" },
+  { id: "silver", label: "Silver", threshold: 0, color: "#C7C7CC" },
+  { id: "gold", label: "Gold", threshold: 2000, color: "#B32734" },
+  { id: "platinum", label: "Platinum", threshold: 5000, color: "#E23744" },
 ];
 
 export const rewards = [
@@ -314,7 +314,7 @@ export const rewards = [
     subtitle: "Min. spend RM25",
     points: 500,
     icon: "pricetag",
-    color: "#FF6B35",
+    color: "#C62834",
     image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80",
   },
   {
@@ -323,7 +323,7 @@ export const rewards = [
     subtitle: "At any mamak partner",
     points: 200,
     icon: "cafe",
-    color: "#8B4513",
+    color: "#B32734",
     image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&q=80",
   },
   {
@@ -332,7 +332,7 @@ export const rewards = [
     subtitle: "Table booking discount",
     points: 800,
     icon: "restaurant",
-    color: "#4A90E2",
+    color: "#8B1A24",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
   },
   {
@@ -341,7 +341,7 @@ export const rewards = [
     subtitle: "Sat & Sun • Up to RM15",
     points: 1200,
     icon: "star",
-    color: "#7C6BFF",
+    color: "#E23744",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
   },
   {

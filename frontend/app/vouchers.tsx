@@ -36,7 +36,7 @@ const vouchers: Voucher[] = [
     subtitle: "Min. spend RM 25",
     code: "DASH5OFF",
     discount: "RM 5",
-    color: "#FF6B35",
+    color: "#C62834",
     expires: "Expires in 12 days",
   },
   {
@@ -45,7 +45,7 @@ const vouchers: Voucher[] = [
     subtitle: "At any mamak partner",
     code: "TEHFREE",
     discount: "FREE",
-    color: "#8B4513",
+    color: "#B32734",
     expires: "Expires in 3 days",
     restaurant: "Roti Canai Maju",
   },
@@ -55,7 +55,7 @@ const vouchers: Voucher[] = [
     subtitle: "Sat & Sun • Up to RM 15",
     code: "WEEKEND20",
     discount: "20%",
-    color: "#7C6BFF",
+    color: "#8B1A24",
     expires: "Expires in 20 days",
   },
 ];

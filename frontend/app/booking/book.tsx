@@ -44,7 +44,7 @@ export default function BookForm() {
             <Text style={{ fontSize: 15, fontWeight: "800", color: colors.onSurface }}>Dim Sum Palace</Text>
             <Text style={{ fontSize: 12, color: colors.muted, marginTop: 2 }}>Chinese • Cantonese • $$$</Text>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 4, marginTop: 4 }}>
-              <Ionicons name="star" size={12} color="#F5A623" />
+              <Ionicons name="star" size={12} color="#E23744" />
               <Text style={{ fontSize: 12, fontWeight: "700", color: colors.onSurface }}>4.6 (1,560)</Text>
             </View>
           </View>

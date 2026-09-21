@@ -23,7 +23,7 @@ export default function Earnings() {
       <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}>
         {/* Hero */}
         <LinearGradient
-          colors={[c.brand, "#008C3E"]}
+          colors={[c.brand, "#8B1A24"]}
           style={{ paddingTop: insets.top + spacing.md, paddingBottom: spacing.xl, paddingHorizontal: spacing.lg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 }}
         >
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>

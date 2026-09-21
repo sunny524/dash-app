@@ -44,7 +44,7 @@ const light = {
   divider: "#F2F2F7",
 
   // Extras
-  star: "#F5A623",
+  star: "#E23744",
   overlay: "rgba(0,0,0,0.45)",
 };
 

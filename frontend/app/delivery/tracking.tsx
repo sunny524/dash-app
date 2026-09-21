@@ -96,7 +96,7 @@ export default function Tracking() {
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 15, fontWeight: "800", color: colors.onSurface }}>Farhan A.</Text>
               <View style={{ flexDirection: "row", alignItems: "center", gap: 4, marginTop: 2 }}>
-                <Ionicons name="star" size={12} color="#F5A623" />
+                <Ionicons name="star" size={12} color="#E23744" />
                 <Text style={{ fontSize: 12, color: colors.muted }}>4.9 • Honda Wave • WCF 8829</Text>
               </View>
             </View>

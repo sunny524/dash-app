@@ -54,7 +54,7 @@ export default function Reviews() {
                 <Text style={{ fontSize: 44, fontWeight: "800", color: colors.onSurface, letterSpacing: -1 }}>{reviewSummary.average.toFixed(1)}</Text>
                 <View style={{ flexDirection: "row", gap: 2, marginTop: 2 }}>
                   {[1, 2, 3, 4, 5].map((s) => (
-                    <Ionicons key={s} name={s <= Math.round(reviewSummary.average) ? "star" : "star-outline"} size={13} color="#F5A623" />
+                    <Ionicons key={s} name={s <= Math.round(reviewSummary.average) ? "star" : "star-outline"} size={13} color="#E23744" />
                   ))}
                 </View>
                 <Text style={{ fontSize: 11, color: colors.muted, marginTop: 4 }}>{reviewSummary.total.toLocaleString()} reviews</Text>
@@ -65,7 +65,7 @@ export default function Reviews() {
                 {reviewSummary.breakdown.map((b) => (
                   <View key={b.stars} style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
                     <Text style={{ fontSize: 11, color: colors.onSurfaceSecondary, fontWeight: "600", width: 10 }}>{b.stars}</Text>
-                    <Ionicons name="star" size={10} color="#F5A623" />
+                    <Ionicons name="star" size={10} color="#E23744" />
                     <View style={{ flex: 1, height: 6, borderRadius: 3, backgroundColor: colors.surfaceTertiary, overflow: "hidden" }}>
                       <View style={{ width: `${b.pct}%`, height: "100%", backgroundColor: b.stars >= 4 ? colors.brandPrimary : (b.stars === 3 ? colors.warning : colors.error), borderRadius: 3 }} />
                     </View>
@@ -148,7 +148,7 @@ export default function Reviews() {
               {/* Stars */}
               <View style={{ flexDirection: "row", gap: 2, marginBottom: 6 }}>
                 {[1, 2, 3, 4, 5].map((s) => (
-                  <Ionicons key={s} name={s <= r.rating ? "star" : "star-outline"} size={13} color="#F5A623" />
+                  <Ionicons key={s} name={s <= r.rating ? "star" : "star-outline"} size={13} color="#E23744" />
                 ))}
               </View>
 

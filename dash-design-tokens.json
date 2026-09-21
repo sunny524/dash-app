@@ -27,7 +27,10 @@
       "secondary": { "value": "#FDE7E9", "type": "color", "description": "Chip / soft red" },
       "onSecondary": { "value": "#B32734", "type": "color" },
       "tertiary":  { "value": "#FFF5F6", "type": "color", "description": "Card wash" },
-      "onTertiary":{ "value": "#E23744", "type": "color" }
+      "onTertiary":{ "value": "#E23744", "type": "color" },
+      "deep":      { "value": "#C62834", "type": "color", "description": "Rich red — reward/voucher tier 2" },
+      "deeper":    { "value": "#B32734", "type": "color", "description": "Deep red — reward/voucher tier 3" },
+      "darkest":   { "value": "#8B1A24", "type": "color", "description": "Wine — reward/voucher tier 4" }
     },
     "status": {
       "success": { "value": "#34C759", "type": "color" },
