@@ -73,7 +73,7 @@ export function RestaurantCard({ r, onPress, compact = false }: { r: Restaurant;
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
             <Text style={styles.name} numberOfLines={1}>{r.name}</Text>
             <View style={styles.ratingBadge}>
-              <Ionicons name="star" size={11} color="#00B14F" />
+              <Ionicons name="star" size={11} color="#E23744" />
               <Text style={styles.ratingText}>{r.rating.toFixed(1)}</Text>
             </View>
           </View>
@@ -91,7 +91,7 @@ export function RestaurantCard({ r, onPress, compact = false }: { r: Restaurant;
             {r.promo ? (
               <>
                 <Text style={styles.dot}>•</Text>
-                <Text style={[styles.metaText, { color: "#00B14F", fontWeight: "700" }]}>{r.promo}</Text>
+                <Text style={[styles.metaText, { color: "#E23744", fontWeight: "700" }]}>{r.promo}</Text>
               </>
             ) : null}
           </View>
@@ -119,7 +119,7 @@ export function RestaurantCard({ r, onPress, compact = false }: { r: Restaurant;
         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
           <Text style={styles.name} numberOfLines={1}>{r.name}</Text>
           <View style={styles.ratingBadge}>
-            <Ionicons name="star" size={11} color="#00B14F" />
+            <Ionicons name="star" size={11} color="#E23744" />
             <Text style={styles.ratingText}>{r.rating.toFixed(1)}</Text>
           </View>
         </View>

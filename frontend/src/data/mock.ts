@@ -1,4 +1,4 @@
-// Mock data for EasyEat static prototype (Malaysian market)
+// Mock data for Dash static prototype (Malaysian market)
 
 export type Restaurant = {
   id: string;
@@ -181,7 +181,7 @@ export const promos = [
     id: "p1",
     title: "Free Delivery",
     subtitle: "On orders above RM25",
-    color: "#00B14F",
+    color: "#E23744",
     image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
   },
   {
@@ -304,7 +304,7 @@ export const rewards = [
     subtitle: "Any restaurant • Min. RM15",
     points: 300,
     icon: "bicycle",
-    color: "#00B14F",
+    color: "#E23744",
     image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&q=80",
     hot: true,
   },

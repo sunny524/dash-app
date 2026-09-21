@@ -34,7 +34,7 @@ export default function Rewards() {
             <Pressable testID="rewards-back" onPress={() => router.back()} style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: "rgba(255,255,255,0.12)", alignItems: "center", justifyContent: "center" }}>
               <Ionicons name="chevron-back" size={22} color="#FFFFFF" />
             </Pressable>
-            <Text style={{ flex: 1, textAlign: "center", fontSize: 16, fontWeight: "700", color: "#FFFFFF" }}>EasyPoints</Text>
+            <Text style={{ flex: 1, textAlign: "center", fontSize: 16, fontWeight: "700", color: "#FFFFFF" }}>DashPoints</Text>
             <Pressable style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: "rgba(255,255,255,0.12)", alignItems: "center", justifyContent: "center" }}>
               <Ionicons name="help-circle-outline" size={22} color="#FFFFFF" />
             </Pressable>
@@ -192,7 +192,7 @@ export default function Rewards() {
 
             {/* How it works */}
             <View style={{ backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing.md, marginTop: spacing.md, ...shadow.card }}>
-              <Text style={{ fontSize: 14, fontWeight: "800", color: colors.onSurface, marginBottom: spacing.md }}>How EasyPoints work</Text>
+              <Text style={{ fontSize: 14, fontWeight: "800", color: colors.onSurface, marginBottom: spacing.md }}>How DashPoints work</Text>
               {[
                 { icon: "receipt", title: "Earn 1 pt per RM1 spent", sub: "On delivery, dine-in & pickup" },
                 { icon: "calendar", title: "5x points on table bookings", sub: "Every reservation you honour" },

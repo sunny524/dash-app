@@ -1,5 +1,5 @@
-// Design tokens for EasyEat. Light theme only.
-// Colors match /app/design_guidelines.json.
+// Design tokens for Dash. Light theme only.
+// Rebrand: EasyEat → Dash, brand color green → red.
 
 import { useMemo } from "react";
 import { Appearance, StyleSheet, useColorScheme } from "react-native";
@@ -9,24 +9,24 @@ export type ColorScheme = "light" | "dark";
 const light = {
   // Surfaces
   surface: "#FFFFFF",
-  onSurface: "#1C1C1E",
-  surfaceSecondary: "#F5F6F8",
+  onSurface: "#1A1A1A",
+  surfaceSecondary: "#F7F7F8",
   onSurfaceSecondary: "#3A3A3C",
-  surfaceTertiary: "#E8EBEF",
+  surfaceTertiary: "#EDEDEF",
   onSurfaceTertiary: "#48484A",
-  surfaceInverse: "#1C1C1E",
+  surfaceInverse: "#1A1A1A",
   onSurfaceInverse: "#FFFFFF",
   muted: "#8E8E93",
 
-  // Brand — Grab-style green
-  brand: "#00B14F",
+  // Brand — Dash red
+  brand: "#E23744",
   onBrand: "#FFFFFF",
-  brandPrimary: "#00B14F",
+  brandPrimary: "#E23744",
   onBrandPrimary: "#FFFFFF",
-  brandSecondary: "#E5F7ED",
-  onBrandSecondary: "#009040",
-  brandTertiary: "#F0FDF4",
-  onBrandTertiary: "#00B14F",
+  brandSecondary: "#FDE7E9",
+  onBrandSecondary: "#B32734",
+  brandTertiary: "#FFF5F6",
+  onBrandTertiary: "#E23744",
 
   // Status
   success: "#34C759",
@@ -39,7 +39,7 @@ const light = {
   onInfo: "#FFFFFF",
 
   // Lines
-  border: "#E8EBEF",
+  border: "#EDEDEF",
   borderStrong: "#C7C7CC",
   divider: "#F2F2F7",
 

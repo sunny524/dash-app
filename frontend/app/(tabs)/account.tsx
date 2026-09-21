@@ -7,7 +7,8 @@ import { useRouter } from "expo-router";
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 
 const settings = [
-  { icon: "star", label: "EasyPoints & Rewards", sub: "2,410 pts • Redeem now", route: "/rewards" },
+  { icon: "star", label: "DashPoints & Rewards", sub: "2,410 pts • Redeem now", route: "/rewards" },
+  { icon: "bicycle", label: "Sign in as Rider", sub: "Deliver food, earn RM 20+/hr", route: "/rider", accent: true },
   { icon: "location", label: "Saved Addresses", sub: "3 saved" },
   { icon: "card", label: "Payment Methods", sub: "Visa •••• 4821 + 3 more" },
   { icon: "heart", label: "Favorites", sub: "12 restaurants" },
@@ -76,7 +77,7 @@ export default function AccountScreen() {
               <Ionicons name="gift" size={22} color="#FFFFFF" />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 14, fontWeight: "800", color: "#FFFFFF" }}>2,410 EasyPoints</Text>
+              <Text style={{ fontSize: 14, fontWeight: "800", color: "#FFFFFF" }}>2,410 DashPoints</Text>
               <Text style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>590 more to next reward</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.7)" />
@@ -120,7 +121,7 @@ export default function AccountScreen() {
         </View>
 
         <Text style={{ textAlign: "center", fontSize: 11, color: colors.muted, marginTop: spacing.xl }}>
-          EasyEat v1.0.0 • Made in Malaysia 🇲🇾
+          Dash v1.0.0 • Made in Malaysia 🇲🇾
         </Text>
       </ScrollView>
     </View>

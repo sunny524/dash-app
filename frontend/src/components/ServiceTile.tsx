@@ -39,7 +39,7 @@ export function ServiceTile({
   return (
     <Pressable onPress={onPress} style={styles.tile} testID={testID}>
       <View style={styles.iconWrap}>
-        <Ionicons name={icon as any} size={24} color="#00B14F" />
+        <Ionicons name={icon as any} size={24} color="#E23744" />
       </View>
       {badge ? (
         <View style={styles.badge}><Text style={styles.badgeText}>{badge}</Text></View>

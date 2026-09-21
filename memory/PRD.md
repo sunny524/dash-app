@@ -1,73 +1,63 @@
-# EasyEat — Product Requirements
+# Dash — Product Requirements
 
 ## Overview
-EasyEat is a mobile food-only ordering app prototype for the Malaysian market, inspired by Grab's clean, card-based visual language. It is a **static high-fidelity screen set** covering four core flows: Delivery, QR Dine-in, Pickup, and Table Booking.
+**Dash** is a mobile food-ordering + delivery prototype for the Malaysian market, covering both the customer experience (delivery, dine-in QR, pickup, table booking, rewards) and the rider (driver) experience. Rebranded from EasyEat to a red-and-white identity.
 
-## Scope
-- Mobile-first, iOS-style device frame
-- High-fidelity static screens with mock data (no backend, no real integrations)
-- Grab-inspired UX: rounded cards, pill buttons, filter chips, service tile grid, bold green (#00B14F) accent
-- Malaysian restaurant names and food imagery via Unsplash
+## Brand
+- Name: **Dash**
+- Primary: `#E23744` (Dash red)
+- Surface: `#FFFFFF`
+- Full design system spec: `/app/DESIGN_SYSTEM.md` (Figma-ready)
 
-## Delivered Screens (24 total)
+## Delivered Screens (30+)
 
-### Onboarding
-- **/** — Splash / phone OTP login (with OTP verify state)
-- **/location** — Location permission + saved addresses picker
+### Customer app (light, `#E23744` accent)
+- **/** Splash + phone OTP
+- **/location** Location permission + saved addresses
+- **/(tabs)/home** — Search, service tiles, promo carousel, cuisine chips, restaurants
+- **/(tabs)/orders** — Tabbed history + live order banner
+- **/(tabs)/bookings** — Upcoming/Past reservations
+- **/(tabs)/account** — Profile, DashPoints banner, Sign in as Rider entry, settings
+- **/delivery/restaurants** — Filter chips + live search + empty state
+- **/delivery/restaurant/[id]** — Parallax hero + menu
+- **/delivery/reviews** — 4.8★ hero, breakdown, tag cloud, filters
+- **/delivery/item** — Customization + qty + KeyboardStickyView CTA
+- **/delivery/cart** — Address, delivery time, promo, payment, summary
+- **/delivery/tracking** — Map + rider card + stepper
+- **/dine-in/scanner** — QR viewfinder
+- **/dine-in/menu** — Table-aware menu + Call Waiter FAB
+- **/dine-in/bill** — Split bill + payment methods
+- **/pickup/restaurants** — Pickup list
+- **/pickup/status** — Big order number card + stepper
+- **/booking/restaurants**, **/booking/book**, **/booking/confirmation**
+- **/rewards** — DashPoints hub with Rewards / History tabs
 
-### Tabs (Home, Orders, Bookings, Account)
-- **/(tabs)/home** — Search, 4 service tiles, promo carousel, cuisine chips, restaurants near you
-- **/(tabs)/orders** — Tabbed history + live order banner (cards tap through to tracking/pickup status)
-- **/(tabs)/bookings** — Upcoming/Past reservations (cards tap through to confirmation)
-- **/(tabs)/account** — Profile, EasyPoints reward banner (→ /rewards), settings list
+### Rider app (dark, `#E23744` accent)
+- **/rider** Login
+- **/rider/(tabs)/home** — Online/Offline hero, incentives, hot zones, incoming order request sheet with 15s timer, accept/decline
+- **/rider/active** — Map + turn-by-turn banner + 4-step delivery stepper (Head to restaurant → Pickup → Head to customer → Deliver) + Chat/Call/Navigate + customer note
+- **/rider/summary** — Delivery complete + earnings breakdown + rate customer + trip details + continue riding CTA
+- **/rider/(tabs)/jobs** — Job history with filter tabs
+- **/rider/(tabs)/earnings** — Day/Week/Month segmented control + weekly bar chart + breakdown + acceptance/completion metrics + cash out
+- **/rider/(tabs)/account** — Rider profile + vehicle + metrics + switch back to customer + settings
 
-### Delivery
-- **/delivery/restaurants** — Restaurant list with filter chips
-- **/delivery/restaurant/[id]** — Restaurant detail (rating tap → reviews)
-- **/delivery/reviews** — Rich reviews: 4.8★ score, 5-bar breakdown, tag cloud, filter chips (All/5★/4★/3★/Photos/Verified), reviewer cards with avatar, verified badge, photos, likes, reply
-- **/delivery/item** — Menu item with spice level, add-ons, quantity stepper
-- **/delivery/cart** — Cart + address + delivery time + payment + promo + summary
-- **/delivery/tracking** — Live map + rider card + status stepper
+## Customer → Rider handoff (as requested)
+- Customer places order at `/delivery/cart` → tracks at `/delivery/tracking`
+- Rider sees the SAME order (Nasi Lemak Village, RM 34.40, 3 items) come in as an incoming request card on `/rider/(tabs)/home`
+- Rider taps **Accept Delivery** → assigned to `/rider/active` with full delivery flow
 
-### QR Dine-in
-- **/dine-in/scanner** — QR scanner viewfinder + manual code entry
-- **/dine-in/menu** — Table-aware menu grid + Call Waiter FAB + View Tab CTA
-- **/dine-in/bill** — Bill breakdown + split bill toggle + payment methods (pay → orders)
+## Design deliverables
+- Live theme tokens in `/app/frontend/src/theme.ts`
+- Figma-ready design system: `/app/DESIGN_SYSTEM.md`
+- Colours mirrored in `/app/design_guidelines.json`
 
-### Pickup
-- **/pickup/restaurants** — Pickup-only restaurant list
-- **/pickup/status** — Big order number card + progress stepper + directions
-
-### Table Booking
-- **/booking/restaurants** — Booking-enabled restaurant list
-- **/booking/book** — Date ribbon, time slot grid, party size stepper, special requests
-- **/booking/confirmation** — Success hero + booking card + add-to-calendar actions
-
-### Loyalty
-- **/rewards** — EasyPoints hub: dark hero with balance, gold→platinum progress bar, Rewards/History tabs, quick-redeem carousel, all rewards list (redeem/locked/claimed states), points activity ledger, "How EasyPoints work" explainer
-
-## Reusable Components
-- `RestaurantCard` — used in all 4 flows, with **compact list variant** for search results (photo, cuisines, rating badge, ETA, distance, review count / promo)
-- `ServiceTile` — 4 home tiles (compact 1.15 aspect ratio)
-- `FilterChipRow` — horizontal, non-wrapping, sticky-ready
-- `StatusStepper` — vertical stepper for tracking + pickup status
-- `PillButton` / `StickyCTA` — pill-shaped primary CTAs anchored at bottom
-- `ScreenHeader` — safe-area aware sticky header with back button
-
-## Keyboard & Search UX
-- App is wrapped in `KeyboardProvider` from `react-native-keyboard-controller` at root
-- Screens with text inputs (splash/OTP, cart, menu item, booking form) use `KeyboardAwareScrollView` with `bottomOffset` so inputs auto-scroll above the keyboard
-- Sticky bottom CTAs (Add to Cart, Place Order, Confirm Booking) use `KeyboardStickyView` so they ride up above the keyboard when it opens
-- All ScrollViews use `keyboardShouldPersistTaps="handled"` + `keyboardDismissMode="on-drag"` for natural iOS dismissal
-- Home search filters restaurants live by name / cuisine / address; Delivery list search combines with chip filters ("Top Rated", "Under 25 min", "Promo", "$", "Halal") with an empty state + Clear filters CTA
-
-## Design Tokens (`src/theme.ts`)
-- Primary brand: **#00B14F** (Grab-style green)
-- Surface: #FFFFFF, secondary #F5F6F8
-- Pill radius 999, card radius 20, medium radius 12
-- Spacing scale 4/8/12/16/24/32/48
-
-## Not in scope
-- Backend / API / auth (all mocked, screens are non-functional beyond navigation)
-- Ride-hailing, groceries, parcels
-- Payment integrations (Stripe/DuitNow shown as UI mocks only)
+## Interactions (working prototype)
+- Live search on Home + Delivery list (name / cuisine / address)
+- Filter chips with real filtering (Top Rated, Under 25 min, Promo, $, Halal, cuisines)
+- Redeemable rewards with claimed state
+- OTP auto-advance with backspace-back
+- KeyboardAware forms + sticky CTAs above keyboard
+- Rider online toggle triggers a mock incoming order after 800 ms with a 15-second countdown, red urgency at 5s
+- 4-step active delivery advances stage-by-stage
+- Rate customer 1-5 stars on summary
+- Weekly earnings bar chart with today highlight

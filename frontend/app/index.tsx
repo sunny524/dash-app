@@ -34,12 +34,12 @@ export default function Index() {
       {/* Hero background */}
       <View style={{ position: "absolute", top: 0, left: 0, right: 0, height: 380 }}>
         <Image
-          source={{ uri: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=1200&q=80" }}
+          source={{ uri: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80" }}
           style={{ width: "100%", height: "100%" }}
           contentFit="cover"
         />
         <LinearGradient
-          colors={["rgba(0,177,79,0.88)", "rgba(0,177,79,0.55)", "rgba(0,177,79,0)"]}
+          colors={["rgba(226,55,68,0.88)", "rgba(226,55,68,0.55)", "rgba(226,55,68,0)"]}
           style={StyleSheet.absoluteFill}
         />
       </View>
@@ -53,7 +53,7 @@ export default function Index() {
         }}>
           <Ionicons name="restaurant" size={28} color="#FFFFFF" />
         </View>
-        <Text style={{ fontSize: 34, fontWeight: "800", color: "#FFFFFF", marginTop: spacing.md }}>EasyEat</Text>
+        <Text style={{ fontSize: 34, fontWeight: "800", color: "#FFFFFF", marginTop: spacing.md }}>Dash</Text>
         <Text style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", marginTop: 4 }}>
           Malaysia&apos;s food, delivered. Dine in. Pick up. Book a table.
         </Text>
