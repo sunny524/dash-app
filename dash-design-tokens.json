@@ -1,0 +1,136 @@
+{
+  "$themes": [
+    {
+      "id": "dash-customer-light",
+      "name": "Dash Customer (Light)",
+      "selectedTokenSets": {
+        "global": "enabled",
+        "customer-light": "enabled"
+      }
+    },
+    {
+      "id": "dash-rider-dark",
+      "name": "Dash Rider (Dark)",
+      "selectedTokenSets": {
+        "global": "enabled",
+        "rider-dark": "enabled"
+      }
+    }
+  ],
+  "$metadata": {
+    "tokenSetOrder": ["global", "customer-light", "rider-dark"]
+  },
+  "global": {
+    "brand": {
+      "primary":   { "value": "#E23744", "type": "color", "description": "Dash red" },
+      "onPrimary": { "value": "#FFFFFF", "type": "color" },
+      "secondary": { "value": "#FDE7E9", "type": "color", "description": "Chip / soft red" },
+      "onSecondary": { "value": "#B32734", "type": "color" },
+      "tertiary":  { "value": "#FFF5F6", "type": "color", "description": "Card wash" },
+      "onTertiary":{ "value": "#E23744", "type": "color" }
+    },
+    "status": {
+      "success": { "value": "#34C759", "type": "color" },
+      "warning": { "value": "#FF9500", "type": "color" },
+      "error":   { "value": "#FF3B30", "type": "color" },
+      "info":    { "value": "#0A84FF", "type": "color" },
+      "star":    { "value": "#F5A623", "type": "color" }
+    },
+    "spacing": {
+      "xs":   { "value": "4",  "type": "spacing" },
+      "sm":   { "value": "8",  "type": "spacing" },
+      "md":   { "value": "12", "type": "spacing" },
+      "lg":   { "value": "16", "type": "spacing" },
+      "xl":   { "value": "24", "type": "spacing" },
+      "xxl":  { "value": "32", "type": "spacing" },
+      "xxxl": { "value": "48", "type": "spacing" }
+    },
+    "radius": {
+      "sm":   { "value": "6",   "type": "borderRadius" },
+      "md":   { "value": "12",  "type": "borderRadius" },
+      "lg":   { "value": "20",  "type": "borderRadius" },
+      "pill": { "value": "999", "type": "borderRadius" }
+    },
+    "font": {
+      "family": { "value": "Plus Jakarta Sans", "type": "fontFamilies" },
+      "weight": {
+        "regular":    { "value": "400", "type": "fontWeights" },
+        "medium":     { "value": "500", "type": "fontWeights" },
+        "semibold":   { "value": "600", "type": "fontWeights" },
+        "bold":       { "value": "700", "type": "fontWeights" },
+        "extrabold":  { "value": "800", "type": "fontWeights" }
+      },
+      "size": {
+        "caption": { "value": "10", "type": "fontSizes" },
+        "small":   { "value": "12", "type": "fontSizes" },
+        "body":    { "value": "14", "type": "fontSizes" },
+        "bodyLg":  { "value": "15", "type": "fontSizes" },
+        "title":   { "value": "16", "type": "fontSizes" },
+        "titleLg": { "value": "18", "type": "fontSizes" },
+        "h3":      { "value": "20", "type": "fontSizes" },
+        "h2":      { "value": "24", "type": "fontSizes" },
+        "h1":      { "value": "34", "type": "fontSizes" },
+        "hero":    { "value": "44", "type": "fontSizes" }
+      }
+    },
+    "shadow": {
+      "card": {
+        "value": {
+          "x": "0", "y": "4", "blur": "12", "spread": "0",
+          "color": "rgba(15, 23, 42, 0.06)", "type": "dropShadow"
+        },
+        "type": "boxShadow"
+      },
+      "sticky": {
+        "value": {
+          "x": "0", "y": "-4", "blur": "20", "spread": "0",
+          "color": "rgba(15, 23, 42, 0.12)", "type": "dropShadow"
+        },
+        "type": "boxShadow"
+      }
+    }
+  },
+  "customer-light": {
+    "surface": {
+      "primary":   { "value": "#FFFFFF", "type": "color", "description": "Screen canvas" },
+      "secondary": { "value": "#F7F7F8", "type": "color", "description": "Cards, list rows" },
+      "tertiary":  { "value": "#EDEDEF", "type": "color", "description": "Inputs, chips" },
+      "inverse":   { "value": "#1A1A1A", "type": "color" }
+    },
+    "text": {
+      "onSurface":          { "value": "#1A1A1A", "type": "color" },
+      "onSurfaceSecondary": { "value": "#3A3A3C", "type": "color" },
+      "onSurfaceTertiary":  { "value": "#48484A", "type": "color" },
+      "onSurfaceInverse":   { "value": "#FFFFFF", "type": "color" },
+      "muted":              { "value": "#8E8E93", "type": "color" }
+    },
+    "line": {
+      "border":       { "value": "#EDEDEF", "type": "color" },
+      "borderStrong": { "value": "#C7C7CC", "type": "color" },
+      "divider":      { "value": "#F2F2F7", "type": "color" }
+    },
+    "overlay": {
+      "scrim": { "value": "rgba(0, 0, 0, 0.45)", "type": "color" }
+    }
+  },
+  "rider-dark": {
+    "surface": {
+      "primary":   { "value": "#0B0F14", "type": "color", "description": "Canvas" },
+      "secondary": { "value": "#141A21", "type": "color", "description": "Cards" },
+      "tertiary":  { "value": "#1D242D", "type": "color", "description": "Deeper surface" }
+    },
+    "text": {
+      "onSurface":    { "value": "#FFFFFF", "type": "color" },
+      "onSurfaceDim": { "value": "#9AA4B1", "type": "color" },
+      "muted":        { "value": "#66707C", "type": "color" }
+    },
+    "line": {
+      "border":  { "value": "#242C36", "type": "color" },
+      "divider": { "value": "#1B222B", "type": "color" }
+    },
+    "brand": {
+      "dim":  { "value": "#3A1519", "type": "color", "description": "Red 12% tint on dark" },
+      "live": { "value": "#FF5C6C", "type": "color", "description": "Online status dot" }
+    }
+  }
+}
