@@ -8,7 +8,6 @@ import { useState } from "react";
 
 import { spacing, radius } from "@/src/theme";
 import { rider as c, incomingOrder } from "@/src/data/rider-mock";
-
 type Stage = 0 | 1 | 2 | 3;
 const stageMeta: { title: string; cta: string; sub: string; icon: string }[] = [
   { title: "Head to restaurant", cta: "I've arrived at restaurant", sub: `${incomingOrder.distanceToRestaurantKm} km • ~5 min`, icon: "restaurant" },
@@ -170,7 +169,7 @@ export default function ActiveDelivery() {
 
             {/* Communication */}
             <View style={{ flexDirection: "row", gap: spacing.md, marginTop: spacing.md }}>
-              <ActBtn icon="chatbubble" label="Chat" />
+              <ActBtn icon="chatbubble" label="Chat" onPress={() => router.push("/rider/chat")} />
               <ActBtn icon="call" label="Call" primary />
               <ActBtn icon="navigate" label="Navigate" />
             </View>
@@ -211,9 +210,9 @@ export default function ActiveDelivery() {
   );
 }
 
-function ActBtn({ icon, label, primary }: { icon: string; label: string; primary?: boolean }) {
+function ActBtn({ icon, label, primary, onPress }: { icon: string; label: string; primary?: boolean; onPress?: () => void }) {
   return (
-    <Pressable style={{
+    <Pressable onPress={onPress} style={{
       flex: 1, height: 42, borderRadius: radius.pill,
       backgroundColor: primary ? c.brand : c.bg2,
       borderWidth: 1, borderColor: primary ? c.brand : c.border,

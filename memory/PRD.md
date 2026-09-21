@@ -9,7 +9,7 @@
 - Surface: `#FFFFFF`
 - Full design system spec: `/app/DESIGN_SYSTEM.md` (Figma-ready)
 
-## Delivered Screens (30+)
+## Delivered Screens (35+)
 
 ### Customer app (light, `#E23744` accent)
 - **/** Splash + phone OTP
@@ -42,9 +42,26 @@
 - **/rider/(tabs)/account** — Rider profile + vehicle + metrics + switch back to customer + settings
 
 ## Customer → Rider handoff (as requested)
-- Customer places order at `/delivery/cart` → tracks at `/delivery/tracking`
-- Rider sees the SAME order (Nasi Lemak Village, RM 34.40, 3 items) come in as an incoming request card on `/rider/(tabs)/home`
-- Rider taps **Accept Delivery** → assigned to `/rider/active` with full delivery flow
+- Customer places order at `/delivery/cart` → tracks at `/delivery/tracking` and immediately sees a dark **Live toast**: "Farhan accepted your order — he'll be at Nasi Lemak Village in 4 min" (LIVE badge, auto-dismisses after 4s)
+- Rider sees the SAME order (Nasi Lemak Village, RM 34.40, 3 items) as an incoming request card on `/rider/(tabs)/home` with 15-second timer
+- Rider taps **Accept Delivery** → `/rider/active` with full delivery flow · **Chat** button opens `/rider/chat`
+
+## Rider Chat
+- Dark chat screen at `/rider/chat` with system message, red "me" bubbles + white "them" bubbles, message grouping, seen indicator, order pill at top
+- **Quick reply chips row** ("I'm on the way", "I've arrived at the restaurant", "Picking up your order now", "I'm 5 min away", "I'm at your door", "Can you come down please?") — tap to send instantly
+- Keyboard-aware composer with camera + send buttons, disabled state when empty
+- Call icon in header
+
+## Merchant Portal
+- `/merchant` login (email + password) with red hero and "Switch to Customer" chip
+- `/merchant/(tabs)/orders` — Kitchen order queue with left-border status colour, KPI strip (New / Preparing / Ready / Today), filter chips, and progressive CTAs: **Accept & start preparing → Mark as Ready → Hand off**. Customer notes (e.g. "Extra sambal, no peanuts") highlighted in amber. Auto-accept toggle in header.
+- `/merchant/(tabs)/revenue` — Red hero with Day/Week/Month, hourly bar chart with peak marker, top items with progress bars, pending payout card
+- `/merchant/(tabs)/menu` — Search + in-stock/low/out-of-stock toggle per item + per-item sold count + Edit/Photo/Discount actions
+- `/merchant/(tabs)/account` — Restaurant profile, Open/Closed toggle, metrics, switch back to Customer, settings (Opening hours, Payout, Promotions, Printer/POS, etc.)
+
+## Voucher Wallet
+- `/vouchers` — ticket-style cards (perforated cut-out edges + coloured gradient top), Active / Used tabs with counts, tap to expand → QR code + centered code + Copy code + **Use now** CTA (deep-links to cart)
+- Empty state redirects to `/rewards`
 
 ## Design deliverables
 - Live theme tokens in `/app/frontend/src/theme.ts`

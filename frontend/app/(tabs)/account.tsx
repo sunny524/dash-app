@@ -8,11 +8,12 @@ import { useTheme, spacing, radius, shadow } from "@/src/theme";
 
 const settings = [
   { icon: "star", label: "DashPoints & Rewards", sub: "2,410 pts • Redeem now", route: "/rewards" },
-  { icon: "bicycle", label: "Sign in as Rider", sub: "Deliver food, earn RM 20+/hr", route: "/rider", accent: true },
+  { icon: "pricetag", label: "My Vouchers", sub: "4 active • Ready to use", route: "/vouchers" },
+  { icon: "bicycle", label: "Sign in as Rider", sub: "Deliver food, earn RM 20+/hr", route: "/rider" },
+  { icon: "storefront", label: "Merchant Portal", sub: "For restaurant partners", route: "/merchant" },
   { icon: "location", label: "Saved Addresses", sub: "3 saved" },
   { icon: "card", label: "Payment Methods", sub: "Visa •••• 4821 + 3 more" },
   { icon: "heart", label: "Favorites", sub: "12 restaurants" },
-  { icon: "pricetag", label: "Promos & Vouchers", sub: "5 available" },
   { icon: "notifications", label: "Notifications", sub: "Push, Email, SMS" },
   { icon: "language", label: "Language", sub: "English (MY)" },
   { icon: "help-circle", label: "Help Center" },

@@ -1,9 +1,10 @@
-import { View, Text, Pressable, ScrollView } from "react-native";
+import { View, Text, Pressable, ScrollView, Animated } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import { useEffect, useRef, useState } from "react";
 
 import { useTheme, spacing, radius, shadow } from "@/src/theme";
 import { StatusStepper } from "@/src/components/StatusStepper";
@@ -12,6 +13,16 @@ export default function Tracking() {
   const { colors } = useTheme();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [showToast, setShowToast] = useState(true);
+  const toastY = useRef(new Animated.Value(-80)).current;
+
+  useEffect(() => {
+    Animated.sequence([
+      Animated.spring(toastY, { toValue: 0, useNativeDriver: true, damping: 15 }),
+      Animated.delay(4000),
+      Animated.timing(toastY, { toValue: -120, duration: 260, useNativeDriver: true }),
+    ]).start(() => setShowToast(false));
+  }, [toastY]);
 
   const steps = [
     { title: "Order Confirmed", subtitle: "12:12 PM", done: true, icon: "checkmark-circle" },
@@ -107,6 +118,40 @@ export default function Tracking() {
           </Pressable>
         </ScrollView>
       </View>
+
+      {/* Live order feed toast */}
+      {showToast && (
+        <Animated.View
+          testID="live-toast"
+          style={{
+            position: "absolute",
+            top: insets.top + 8,
+            left: spacing.lg, right: spacing.lg,
+            transform: [{ translateY: toastY }],
+            backgroundColor: colors.onSurface,
+            borderRadius: radius.lg,
+            padding: spacing.md,
+            flexDirection: "row", alignItems: "center", gap: spacing.md,
+            ...shadow.sticky,
+          }}
+        >
+          <View style={{
+            width: 40, height: 40, borderRadius: 20,
+            backgroundColor: colors.brandPrimary,
+            alignItems: "center", justifyContent: "center",
+          }}>
+            <Ionicons name="bicycle" size={20} color="#FFFFFF" />
+          </View>
+          <View style={{ flex: 1 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.success }} />
+              <Text style={{ color: "rgba(255,255,255,0.7)", fontSize: 10, fontWeight: "800", letterSpacing: 0.5 }}>LIVE</Text>
+            </View>
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "800", marginTop: 2 }}>Farhan accepted your order</Text>
+            <Text style={{ color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 2 }}>He&apos;ll be at Nasi Lemak Village in 4 min</Text>
+          </View>
+        </Animated.View>
+      )}
     </View>
   );
 }
